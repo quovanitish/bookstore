@@ -1,1 +1,9 @@
-<p>cart works!</p>
+<div *ngFor="let book of books">
+  <app-book
+    [book]="book"
+    [action]="action"
+    (onButtonClick)="handleRemoveFromCart($event)"
+  >
+    <app-book-image [imageLink]="book.cover"></app-book-image>
+  </app-book>
+</div>
