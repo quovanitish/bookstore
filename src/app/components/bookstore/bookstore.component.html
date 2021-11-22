@@ -1,0 +1,19 @@
+<app-navbar>
+  <button *ngIf="!this.authService.isLoggedIn()" (click)="handleLoginClick()">
+    Log in
+  </button>
+  <button *ngIf="!this.authService.isLoggedIn()" (click)="handleSignUpClick()">
+    Sign up
+  </button>
+  <button *ngIf="this.authService.isLoggedIn()" (click)="(handleLogOutClick)">
+    Log out
+  </button>
+  <button *ngIf="this.authService.isLoggedIn()" (click)="handleCartClick()">
+    Cart
+  </button>
+</app-navbar>
+<div *ngFor="let book of books">
+  <app-book [book]="book" [action]="action">
+    <app-book-image [imageLink]="book.cover"></app-book-image>
+  </app-book>
+</div>

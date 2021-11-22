@@ -1,0 +1,14 @@
+<div class="book-card" *ngIf="book">
+  <h3>{{ book.title }}</h3>
+  <ng-content *ngIf="book.cover"></ng-content>
+  <div class="book-author">Author: {{ book.author }}</div>
+  <div class="book-year">Year: {{ book.year }}</div>
+  <div class="book-genre">Genre: {{ book.genre }}</div>
+  <div class="book-price">Price: {{ book.price }} $</div>
+
+  <div class="book-action">
+    <button class="add-cart" (click)="handleAddToCart(book.id)">
+      {{ action }}
+    </button>
+  </div>
+</div>
