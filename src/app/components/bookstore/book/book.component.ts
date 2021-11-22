@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { BookstoreService } from 'src/app/services/bookstore/bookstore.service';
 import { Book } from 'src/models/book/book';
@@ -16,22 +16,28 @@ export class BookComponent implements OnInit {
 
   @Input() book!: Book;
   @Input() action!: string;
+  @Output()
+  onButtonClick = new EventEmitter<string>();
 
   ngOnInit(): void {}
 
-  handleAddToCart = (bookId: string): void => {
-    if (!this.authService.isLoggedIn()) {
-      alert('Please log in first to add a book to the cart');
-      return;
-    } else {
-      this.bookService.addToCart(bookId).subscribe(
-        (result) => {
-          console.log(result);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
+  // handleAddToCart = (bookId: string): void => {
+  //   if (!this.authService.isLoggedIn()) {
+  //     alert('Please log in first to add a book to the cart');
+  //     return;
+  //   } else {
+  //     this.bookService.addToCart(bookId).subscribe(
+  //       (result) => {
+  //         console.log(result);
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //       }
+  //     );
+  //   }
+  // };
+
+  handleClick = (bookId: string): void => {
+    this.onButtonClick.emit(bookId);
   };
 }
