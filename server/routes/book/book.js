@@ -27,7 +27,7 @@ router.patch("/books/:id/add", auth, async (req, res) => {
   try {
     req.user.cart = req.user.cart.concat({ bookId });
     req.user.save();
-    res.status(200).send();
+    res.status(200).send(req.user.cart);
   } catch (err) {
     res.status(400).send({ error: err.message });
   }
@@ -40,9 +40,23 @@ router.patch("/books/:id/remove", auth, async (req, res) => {
       return bookObject.bookId !== bookId;
     });
     req.user.save();
-    res.status(200).send();
+    res.status(200).send(req.user.cart);
   } catch (err) {
     res.status(400).send({ error: err.mesaage });
+  }
+});
+
+router.get("/books/cart", auth, (req, res) => {
+  try {
+    const result = req.user.cart.map(async (bookId) => {
+      return await Book.find({ _id: bookId.bookId });
+    });
+
+    Promise.all(result).then((resolvedResult) => {
+      res.status(200).send(resolvedResult);
+    });
+  } catch (err) {
+    res.status(400).send({ error: err.message });
   }
 });
 
