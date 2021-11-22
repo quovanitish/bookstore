@@ -36,7 +36,9 @@ const userSchema = new mongoose.Schema({
 
   cart: [
     {
-      type: String,
+      bookId: {
+        type: String,
+      },
     },
   ],
 
