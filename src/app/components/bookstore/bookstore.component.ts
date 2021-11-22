@@ -26,6 +26,22 @@ export class BookstoreComponent implements OnInit {
     });
   }
 
+  handleAddToCart = (bookId: string): void => {
+    if (!this.authService.isLoggedIn()) {
+      alert('Please log in first to add a book to the cart');
+      return;
+    } else {
+      this.bookService.addToCart(bookId).subscribe(
+        (result) => {
+          console.log(result);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  };
+
   handleCartClick = (): void => {
     this.router.navigate([environment.ui.cart]);
   };
