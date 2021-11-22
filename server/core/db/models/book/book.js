@@ -20,6 +20,10 @@ const bookSchema = new mongooose.Schema({
   price: {
     type: Number,
   },
+
+  cover: {
+    type: String,
+  },
 });
 
 const Book = mongooose.model("Book", bookSchema);
