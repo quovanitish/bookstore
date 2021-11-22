@@ -52,6 +52,17 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
+// abstract details of user for public response
+userSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject();
+
+  delete userObject.password;
+  delete userObject.tokens;
+
+  return userObject;
+};
+
 // instance method to generate JWT token for a user
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
