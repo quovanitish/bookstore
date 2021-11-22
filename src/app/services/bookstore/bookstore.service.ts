@@ -53,4 +53,20 @@ export class BookstoreService {
       {}
     );
   };
+
+  // get cart items
+  getCart = (): Promise<Book[]> => {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${environment.backendServer.url}books/cart`).subscribe(
+        (result) => {
+          console.log(result);
+
+          resolve(this.formatService.formatBooksData(result));
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  };
 }
