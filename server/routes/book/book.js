@@ -22,4 +22,28 @@ router.get("/books", async (req, res) => {
   }
 });
 
+router.patch("/books/:id/add", auth, async (req, res) => {
+  const bookId = req.params.id;
+  try {
+    req.user.cart = req.user.cart.concat({ bookId });
+    req.user.save();
+    res.status(200).send();
+  } catch (err) {
+    res.status(400).send({ error: err.message });
+  }
+});
+
+router.patch("/books/:id/remove", auth, async (req, res) => {
+  const bookId = req.params.id;
+  try {
+    req.user.cart = req.user.cart.filter((bookObject) => {
+      return bookObject.bookId !== bookId;
+    });
+    req.user.save();
+    res.status(200).send();
+  } catch (err) {
+    res.status(400).send({ error: err.mesaage });
+  }
+});
+
 module.exports = router;
