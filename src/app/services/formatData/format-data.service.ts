@@ -10,7 +10,7 @@ export class FormatDataService {
   formatBooksData(rawData: any): Book[] {
     const result: Book[] = rawData.map((bookObj: any) => {
       return new Book(
-        bookObj.id,
+        bookObj._id,
         bookObj.title,
         bookObj.author,
         bookObj.year,
