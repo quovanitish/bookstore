@@ -54,5 +54,16 @@ export class BookstoreComponent implements OnInit {
     this.router.navigate([environment.ui.signup]);
   };
 
-  handleLogOutClick = (): void => {};
+  handleLogOutClick = (): void => {
+    this.authService.logout().subscribe(
+      (response) => {
+        console.log('Logout Success');
+        localStorage.removeItem('token');
+        this.router.navigate([environment.ui.bookstore]);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
 }

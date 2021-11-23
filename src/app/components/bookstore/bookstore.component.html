@@ -5,7 +5,7 @@
   <button *ngIf="!this.authService.isLoggedIn()" (click)="handleSignUpClick()">
     Sign up
   </button>
-  <button *ngIf="this.authService.isLoggedIn()" (click)="(handleLogOutClick)">
+  <button *ngIf="this.authService.isLoggedIn()" (click)="handleLogOutClick()">
     Log out
   </button>
   <button *ngIf="this.authService.isLoggedIn()" (click)="handleCartClick()">
