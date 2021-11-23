@@ -49,7 +49,7 @@ router.patch("/books/:id/remove", auth, async (req, res) => {
 router.get("/books/cart", auth, (req, res) => {
   try {
     const result = req.user.cart.map(async (bookId) => {
-      return await Book.find({ _id: bookId.bookId });
+      return await Book.findOne({ _id: bookId.bookId });
     });
 
     Promise.all(result).then((resolvedResult) => {
