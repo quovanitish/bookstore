@@ -16,6 +16,7 @@ import { BookstoreService } from './services/bookstore/bookstore.service';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './components/navbar/cart/guard/auth.guard';
 import { FormatDataService } from './services/formatData/format-data.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { FormatDataService } from './services/formatData/format-data.service';
     SidebarComponent,
     CartComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
     BookstoreService,
     AuthService,
