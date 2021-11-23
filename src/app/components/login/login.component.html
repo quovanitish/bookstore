@@ -1,1 +1,27 @@
-<p>login works!</p>
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
+  <div class="mb-3">
+    <label>Email address</label>
+    <input
+      type="email"
+      placeholder="Enter email"
+      name="email"
+      [(ngModel)]="user.email"
+      #email="ngModel"
+      required
+    />
+    <div [hidden]="email.valid || email.pristine">Name is required</div>
+  </div>
+  <div class="mb-3">
+    <label>Password</label>
+    <input
+      type="password"
+      placeholder="Enter password"
+      name="password"
+      [(ngModel)]="user.password"
+      #password="ngModel"
+      required
+    />
+    <div [hidden]="email.valid || password.pristine">Password is required</div>
+  </div>
+  <button type="submit" [disabled]="!loginForm.form.valid">Login</button>
+</form>
