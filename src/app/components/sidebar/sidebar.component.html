@@ -1,0 +1,45 @@
+<div class="sidebar">
+  <!-- Form to filter genres -->
+  <label>Genre</label>
+  <div>
+    <form [formGroup]="genreFilterForm!">
+      <select formControlName="genre">
+        Select genre:
+        <option [ngValue]="null" disabled>Select genre</option>
+        <option *ngFor="let genre of genres" [ngValue]="genre.genre">
+          {{ genre.genre }}
+        </option>
+      </select>
+    </form>
+  </div>
+
+  <!-- Form to filter authors -->
+  <label>Author</label>
+  <div>
+    <form [formGroup]="authorFilterForm!">
+      <select formControlName="author">
+        Select Authors:
+        <option [ngValue]="null" disabled>Select author</option>
+        <option *ngFor="let author of authors" [ngValue]="author.author">
+          {{ author.author }}
+        </option>
+      </select>
+    </form>
+  </div>
+
+  <!-- Filter for price -->
+  <label>Price</label>
+  <div>
+    <p>
+      <input
+        #priceFilter
+        type="range"
+        value="0"
+        min="0"
+        max="50"
+        (change)="handlePriceFilter(priceFilter.value)"
+      />
+    </p>
+    {{ priceFilter.value | currency }} - {{ 50 | currency }}
+  </div>
+</div>
