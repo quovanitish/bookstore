@@ -16,7 +16,7 @@ import { BookstoreService } from './services/bookstore/bookstore.service';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './components/navbar/cart/guard/auth.guard';
 import { FormatDataService } from './services/formatData/format-data.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     CartComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [
     BookstoreService,
     AuthService,

@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class BookstoreComponent implements OnInit {
   books!: Book[];
+  filteredBooks!: Book[];
   action: string = 'Add to cart';
 
   constructor(
@@ -21,10 +22,14 @@ export class BookstoreComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.refreshBooks();
+  }
+
+  private refreshBooks = (): void => {
     this.bookService.broadcastBooks.subscribe((result) => {
       this.books = result;
     });
-  }
+  };
 
   handleAddToCart = (bookId: string): void => {
     if (!this.authService.isLoggedIn()) {
@@ -65,5 +70,37 @@ export class BookstoreComponent implements OnInit {
         console.log(error);
       }
     );
+  };
+
+  handleGenreFilter = async (genre: string) => {
+    this.refreshBooks();
+    this.filteredBooks = this.books.filter((bookObject) => {
+      return bookObject.genre.toLowerCase().includes(genre);
+    });
+
+    this.books = this.filteredBooks;
+  };
+
+  handleAuthorFilter = (author: string): void => {
+    this.refreshBooks();
+    this.filteredBooks = this.books.filter((bookObject) => {
+      return bookObject.author.toLowerCase().includes(author);
+    });
+
+    this.books = this.filteredBooks;
+  };
+
+  handlePriceFilter = (price: Number): void => {
+    if (price === 0) {
+      this.refreshBooks();
+      return;
+    }
+    
+    this.refreshBooks();
+    this.filteredBooks = this.books.filter((bookObject) => {
+      return bookObject.price === price;
+    });
+
+    this.books = this.filteredBooks;
   };
 }
