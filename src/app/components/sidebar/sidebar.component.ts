@@ -46,6 +46,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   filterAuthor = new EventEmitter<string>();
   @Output()
   filterPrice = new EventEmitter<Number>();
+  @Output()
+  resetFilter = new EventEmitter<''>();
 
   ngOnInit(): void {
     this.genreFilterForm = this.formBuilder.group({
@@ -81,6 +83,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   handlePriceFilter = (val: string): void => {
     this.filterPrice.emit(Number(val));
+  };
+
+  handleResetFilter = (): void => {
+    this.resetFilter.emit();
   };
 
   // unsubscribe to filter subscriptions
