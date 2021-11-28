@@ -1,9 +1,11 @@
-<div *ngFor="let book of books">
-  <app-book
-    [book]="book"
-    [action]="action"
-    (onButtonClick)="handleRemoveFromCart($event)"
-  >
-    <app-book-image [imageLink]="book.cover"></app-book-image>
-  </app-book>
+<div class="d-flex flex-wrap">  
+  <div *ngFor="let book of books" class="p-4">
+    <app-book
+      [book]="book"
+      [action]="action"
+      (onButtonClick)="handleRemoveFromCart($event)"
+    >
+      <app-book-image [imageLink]="book.cover"></app-book-image>
+    </app-book>
+  </div>
 </div>
