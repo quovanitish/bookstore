@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookstoreComponent } from './components/bookstore/bookstore.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { BookComponent } from './components/bookstore/book/book.component';
 import { BookImageComponent } from './components/bookstore/book-image/book-image.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -23,13 +24,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     BookstoreComponent,
     LoginComponent,
+    SignupComponent,
     BookComponent,
     BookImageComponent,
     NavbarComponent,
     SidebarComponent,
     CartComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     BookstoreService,
     AuthService,
