@@ -2,3 +2,10 @@
   display: flex;
   justify-content: space-between;
 }
+
+.books {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: 5rem;
+}

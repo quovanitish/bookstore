@@ -1,19 +1,5 @@
-<app-navbar>
-  <button *ngIf="!this.authService.isLoggedIn()" (click)="handleLoginClick()">
-    Log in
-  </button>
-  <button *ngIf="!this.authService.isLoggedIn()" (click)="handleSignUpClick()">
-    Sign up
-  </button>
-  <button *ngIf="this.authService.isLoggedIn()" (click)="handleLogOutClick()">
-    Log out
-  </button>
-  <button *ngIf="this.authService.isLoggedIn()" (click)="handleCartClick()">
-    Cart
-  </button>
-</app-navbar>
-<div class="content">
-  <div>
+<div class="content p-4">
+  <div class="books gap-5">
     <div *ngFor="let book of books">
       <app-book
         [book]="book"
@@ -28,5 +14,6 @@
     (filterGenre)="handleGenreFilter($event)"
     (filterAuthor)="handleAuthorFilter($event)"
     (filterPrice)="handlePriceFilter($event)"
+    (resetFilter)="handleResetFilter()"
   ></app-sidebar>
 </div>
