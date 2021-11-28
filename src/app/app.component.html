@@ -1,1 +1,42 @@
+<app-navbar>
+  <nav class="navbar sticky-top shadow navbar-light bg-light ps-4 pb-0 pt-0">
+    <h2 [routerLink]="['../']" class="onHover" title="Back to bookstore">
+      Bookstore
+    </h2>
+    <form class="form-inline">
+      <button
+        *ngIf="!this.authService.isLoggedIn()"
+        (click)="handleLoginClick()"
+        type="button"
+        class="btn btn-dark m-3"
+      >
+        Log in
+      </button>
+      <button
+        *ngIf="!this.authService.isLoggedIn()"
+        (click)="handleSignUpClick()"
+        type="button"
+        class="btn btn-dark m-3"
+      >
+        Sign up
+      </button>
+      <button
+        *ngIf="this.authService.isLoggedIn()"
+        (click)="handleLogOutClick()"
+        type="button"
+        class="btn btn-dark m-3"
+      >
+        Log out
+      </button>
+      <button
+        *ngIf="this.authService.isLoggedIn()"
+        (click)="handleCartClick()"
+        type="button"
+        class="btn btn-dark m-3"
+      >
+        Cart
+      </button>
+    </form>
+  </nav>
+</app-navbar>
 <router-outlet></router-outlet>
