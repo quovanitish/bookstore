@@ -1,1 +1,67 @@
-<p>signup works!</p>
+<div class="d-flex flex-column justify-content-center align-items-center mt-5">
+  <form
+    #signupForm="ngForm"
+    (ngSubmit)="onSubmit(signupForm.value)"
+    class="col-lg-3"
+  >
+    <div class="mb-3">
+      <label>Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter name"
+        name="name"
+        [(ngModel)]="newUser.name"
+        #name="ngModel"
+        required
+      />
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label>Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Enter email"
+        name="email"
+        [(ngModel)]="newUser.email"
+        #email="ngModel"
+        required
+      />
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        Email is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Enter password"
+        name="password"
+        [(ngModel)]="newUser.password"
+        #password="ngModel"
+        required
+      />
+      <div
+        [hidden]="email.valid || password.pristine"
+        class="alert alert-danger"
+      >
+        Password is required
+      </div>
+    </div>
+    <button
+      type="submit"
+      [disabled]="!signupForm.form.valid"
+      class="w-100 btn btn-dark"
+    >
+      Sign up
+    </button>
+  </form>
+  <div class="p-4">
+    Already have an account?
+    <a [routerLink]="['/login']" style="text-decoration: none">Login</a>
+  </div>
+</div>
