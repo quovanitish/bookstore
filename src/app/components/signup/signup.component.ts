@@ -20,7 +20,16 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  onSubmit = (signupObject: SignupComponent): void => {
-    console.log(signupObject);
+  // event handler for form submit
+  onSubmit = (signupObject: Signup): void => {
+    this.authService.signup(signupObject).subscribe(
+      (response) => {
+        localStorage.setItem('token', response.token);
+        this.router.navigate([environment.ui.bookstore]);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
 }
