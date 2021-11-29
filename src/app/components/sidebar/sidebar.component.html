@@ -1,9 +1,11 @@
-<div class="sidebar">
+<div
+  class="sidebar d-flex flex-column justify-content-evenly align-items-center"
+>
   <!-- Form to filter genres -->
-  <label>Genre</label>
   <div>
+    <h5>Genre</h5>
     <form [formGroup]="genreFilterForm!">
-      <select formControlName="genre">
+      <select class="form-select form-select-sm" formControlName="genre">
         Select genre:
         <option [ngValue]="null" disabled>Select genre</option>
         <option *ngFor="let genre of genres" [ngValue]="genre.genre">
@@ -14,10 +16,10 @@
   </div>
 
   <!-- Form to filter authors -->
-  <label>Author</label>
   <div>
+    <h5>Author</h5>
     <form [formGroup]="authorFilterForm!">
-      <select formControlName="author">
+      <select class="form-select form-select-sm" formControlName="author">
         Select Authors:
         <option [ngValue]="null" disabled>Select author</option>
         <option *ngFor="let author of authors" [ngValue]="author.author">
@@ -28,19 +30,22 @@
   </div>
 
   <!-- Filter for price -->
-  <label>Price</label>
-  <div>
-    <p>
+  <div class="slider-price d-flex flex-column">
+    <div class="d-flex justify-content-center align-items-center">
+      {{ priceFilter.value | currency }}
       <input
         #priceFilter
         type="range"
+        class="multi-range"
         value="0"
         min="0"
         max="50"
         (change)="handlePriceFilter(priceFilter.value)"
       />
-    </p>
-    {{ priceFilter.value | currency }} - {{ 50 | currency }}
+      {{ 50 | currency }}
+    </div>
   </div>
-  <button class="resetButton" (click)="handleResetFilter()">Reset</button>
+  <button class="btn btn-secondary w-50" (click)="handleResetFilter()">
+    Reset
+  </button>
 </div>
