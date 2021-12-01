@@ -32,19 +32,14 @@ export class CartComponent implements OnInit {
     this.books = this.books.filter((bookObject) => {
       return bookId !== bookObject.id;
     });
-    
-    if (!this.authService.isLoggedIn()) {
-      alert('Please log in first to add a book to the cart');
-      return;
-    } else {
-      this.bookService.removeFromCart(bookId).subscribe(
-        (result) => {
-          console.log(result);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
+
+    this.bookService.removeFromCart(bookId).subscribe(
+      (result) => {
+        console.log(result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
 }

@@ -1,19 +1,21 @@
-<div class="content p-4">
-  <div class="books gap-5">
-    <div *ngFor="let book of books">
-      <app-book
-        [book]="book"
-        [action]="action"
-        (onButtonClick)="handleAddToCart($event)"
-      >
-        <app-book-image [imageLink]="book.cover"></app-book-image>
-      </app-book>
+<app-modal [title]="modalTitle" [body]="modalBody">
+  <div class="content p-4">
+    <div class="books gap-5">
+      <div *ngFor="let book of books">
+        <app-book
+          [book]="book"
+          [action]="action"
+          (onButtonClick)="handleAddToCart($event)"
+        >
+          <app-book-image [imageLink]="book.cover"></app-book-image>
+        </app-book>
+      </div>
     </div>
+    <app-sidebar
+      (filterGenre)="handleGenreFilter($event)"
+      (filterAuthor)="handleAuthorFilter($event)"
+      (filterPrice)="handlePriceFilter($event)"
+      (resetFilter)="handleResetFilter()"
+    ></app-sidebar>
   </div>
-  <app-sidebar
-    (filterGenre)="handleGenreFilter($event)"
-    (filterAuthor)="handleAuthorFilter($event)"
-    (filterPrice)="handlePriceFilter($event)"
-    (resetFilter)="handleResetFilter()"
-  ></app-sidebar>
-</div>
+</app-modal>

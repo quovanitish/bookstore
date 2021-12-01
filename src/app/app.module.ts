@@ -18,6 +18,8 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './components/navbar/cart/guard/auth.guard';
 import { FormatDataService } from './services/formatData/format-data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalComponent } from './components/modal/modal.component';
+import { ModalService } from './services/modal/modal.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     SidebarComponent,
     CartComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AuthService,
     AuthGuard,
     FormatDataService,
+    ModalService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

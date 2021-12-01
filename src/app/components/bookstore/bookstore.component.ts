@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { BookstoreService } from 'src/app/services/bookstore/bookstore.service';
+import { ModalService } from 'src/app/services/modal/modal.service';
 import { Book } from 'src/models/book/book';
 
 @Component({
@@ -12,10 +13,13 @@ export class BookstoreComponent implements OnInit {
   books!: Book[];
   filteredBooks!: Book[];
   action: string = 'Add to cart';
+  modalTitle: string = 'Please authenticate';
+  modalBody: string = 'Log in first to add a book to the cart.';
 
   constructor(
     private bookService: BookstoreService,
-    public authService: AuthService
+    public authService: AuthService,
+    public modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +34,7 @@ export class BookstoreComponent implements OnInit {
 
   handleAddToCart = (bookId: string): void => {
     if (!this.authService.isLoggedIn()) {
-      alert('Please log in first to add a book to the cart');
+      this.modalService.openPopup();
       return;
     } else {
       this.bookService.addToCart(bookId).subscribe(
