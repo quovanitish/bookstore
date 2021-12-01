@@ -3,3 +3,8 @@
 .onHover {
   cursor: pointer;
 }
+
+/*fix jumping scrollbar issue*/
+html {
+  overflow-y: scroll;
+}
